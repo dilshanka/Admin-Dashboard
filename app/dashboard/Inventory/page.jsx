@@ -22,11 +22,11 @@ const ProductsPageInv = async ({ searchParams }) => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <td>Title</td>
+            <td>Item Name</td>
             <td>Description</td>
-            <td>Price</td>
-            <td>Created At</td>
-            <td>Stock</td>
+            <td>Unit Price</td>
+            <td>Updated Date</td>
+            <td>Quantity in Stock</td>
             <td>Action</td>
           </tr>
         </thead>
