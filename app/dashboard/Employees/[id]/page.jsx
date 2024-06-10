@@ -1,11 +1,11 @@
-import { updateproductEmp } from "@/app/lib/actions";
-import { fetchproductEmp } from "@/app/lib/data";
+import { updateProductEmp } from "@/app/lib/actions";
+import { fetchProductEmp } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
 import Image from "next/image";
 
 const SingleProductPageEmp = async ({ params }) => {
   const { id } = params;
-  const productEmp = await fetchproductEmp(id);
+  const productEmp = await fetchProductEmp(id);
 
   return (
     <div className={styles.container}>
@@ -16,7 +16,7 @@ const SingleProductPageEmp = async ({ params }) => {
         {productEmp.title}
       </div>
       <div className={styles.formContainer}>
-        <form action={updateproductEmp} className={styles.form}>
+        <form action={updateProductEmp} className={styles.form}>
           <input type="hidden" name="id" value={productEmp.id} />
           <label>Title</label>
           <input type="text" name="title" placeholder={productEmp.title} />

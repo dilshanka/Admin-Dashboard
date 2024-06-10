@@ -14,7 +14,7 @@ const ProductsPageEmp = async ({ searchParams }) => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search placeholder="Search for a employee name..." />
+        <Search placeholder="Search for a Name..." />
         <Link href="/dashboard/Employees/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
@@ -23,10 +23,10 @@ const ProductsPageEmp = async ({ searchParams }) => {
         <thead>
           <tr>
             <td>Employee ID</td>
-            <td>Name</td>
-            <td>Phone Number</td>
-            <td>Updated Date</td>
             <td>NIC Number</td>
+            <td>Name</td>
+            <td>Updated Date</td>
+            <td>Phone Number</td>
             <td>Action</td>
           </tr>
         </thead>

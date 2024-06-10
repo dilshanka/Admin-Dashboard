@@ -286,7 +286,7 @@ export const addproductEmp = async (formData) => {
 
 
 
-export const updateproductEmp = async (formData) => {
+export const updateProductEmp = async (formData) => {
   const { id, title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
 

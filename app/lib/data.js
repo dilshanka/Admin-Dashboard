@@ -1,4 +1,4 @@
-import { Product, ProductInv, User,ProductEmp } from "./models";
+import { Product, ProductInv, User, ProductEmp } from "./models";
 import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
@@ -121,8 +121,8 @@ export const fetchProductsEmp = async (q, page) => {
 export const fetchProductEmp = async (id) => {
   try {
     connectToDB();
-    const ProductEmp = await ProductEmp.findById(id);
-    return ProductEmp;
+    const productEmp = await ProductEmp.findById(id);
+    return productEmp;
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch Employee!");

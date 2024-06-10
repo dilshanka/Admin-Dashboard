@@ -15,14 +15,17 @@ const AddProductPageEmp = () => {
         <input type="text" placeholder="Name" name="price" required />
         <input type="text" placeholder="Phone Number" name="stock" required />
         <input type="text" placeholder="Updated Date" name="color" />
-        <input type="text" placeholder="NIC Number" name="size" />
-        <textarea
+        <input type="text" placeholder="Age" name="size" />
+        <input type="text" placeholder="NIC Number" name="desc" />
+
+
+        {/* <textarea
           required
           name="desc"
           id="desc"
           rows="16"
           placeholder="Description"
-        ></textarea>
+        ></textarea> */}
         <input type="file" name="image" id="image" accept="image/*" />
         <button type="submit">Submit</button>
       </form>
