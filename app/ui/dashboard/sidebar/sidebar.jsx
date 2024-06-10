@@ -49,6 +49,15 @@ const menuItems = [
         path: "/dashboard/Inventory",
         icon: <MdWork />,
       },
+
+      {
+        title: "Employees",
+        path: "/dashboard/Employees",
+        icon: <MdWork />,
+      },
+
+
+
       {
         title: "Reports",
         path: "/dashboard/reports",
