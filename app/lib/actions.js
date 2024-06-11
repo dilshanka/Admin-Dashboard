@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Product, User,ProductInv,ProductEmp } from "./models";
+import { Product, User, ProductInv, ProductEmp } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
@@ -73,6 +73,16 @@ export const addProduct = async (formData) => {
   const { title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
 
+  let imageBase64 = "";
+
+  // Process the image file
+  const imageFile = formData.get("image");
+  if (imageFile && imageFile.size > 0) {
+    const buffer = await imageFile.arrayBuffer();
+    const base64String = Buffer.from(buffer).toString("base64");
+    imageBase64 = `data:${imageFile.type};base64,${base64String}`;
+  }
+
   try {
     connectToDB();
 
@@ -83,6 +93,7 @@ export const addProduct = async (formData) => {
       stock,
       color,
       size,
+      img: imageBase64,
     });
 
     await newProduct.save();
@@ -167,11 +178,25 @@ export const authenticate = async (prevState, formData) => {
   }
 };
 
-
-
 export const addProductInv = async (formData) => {
   const { title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
+
+
+    let imageBase64 = "";
+
+  // Process the image file
+  const imageFile = formData.get("image");
+  if (imageFile && imageFile.size > 0) {
+    const buffer = await imageFile.arrayBuffer();
+    const base64String = Buffer.from(buffer).toString("base64");
+    imageBase64 = `data:${imageFile.type};base64,${base64String}`;
+  }
+
+
+
+
+
 
   try {
     connectToDB();
@@ -183,6 +208,7 @@ export const addProductInv = async (formData) => {
       stock,
       color,
       size,
+      img: imageBase64,
     });
 
     await newProductInv.save();
@@ -194,11 +220,6 @@ export const addProductInv = async (formData) => {
   revalidatePath("/dashboard/Inventory");
   redirect("/dashboard/Inventory");
 };
-
-
-
-
-
 
 export const updateProductInv = async (formData) => {
   const { id, title, desc, price, stock, color, size } =
@@ -218,7 +239,8 @@ export const updateProductInv = async (formData) => {
 
     Object.keys(updateFieldsInv).forEach(
       (key) =>
-        (updateFieldsInv[key] === "" || undefined) && delete updateFieldsInv[key]
+        (updateFieldsInv[key] === "" || undefined) &&
+        delete updateFieldsInv[key]
     );
 
     await ProductInv.findByIdAndUpdate(id, updateFieldsInv);
@@ -230,8 +252,6 @@ export const updateProductInv = async (formData) => {
   revalidatePath("/dashboard/Inventory");
   redirect("/dashboard/Inventory");
 };
-
-
 
 export const deleteProductInv = async (formData) => {
   const { id } = Object.fromEntries(formData);
@@ -247,17 +267,22 @@ export const deleteProductInv = async (formData) => {
   revalidatePath("/dashboard/Inventory");
 };
 
-
-
-
-
-
-
-
-
 export const addproductEmp = async (formData) => {
   const { title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
+
+
+    let imageBase64 = "";
+
+  // Process the image file
+  const imageFile = formData.get("image");
+  if (imageFile && imageFile.size > 0) {
+    const buffer = await imageFile.arrayBuffer();
+    const base64String = Buffer.from(buffer).toString("base64");
+    imageBase64 = `data:${imageFile.type};base64,${base64String}`;
+  }
+
+
 
   try {
     connectToDB();
@@ -269,6 +294,7 @@ export const addproductEmp = async (formData) => {
       stock,
       color,
       size,
+      img: imageBase64,
     });
 
     await newproductEmp.save();
@@ -280,11 +306,6 @@ export const addproductEmp = async (formData) => {
   revalidatePath("/dashboard/Employees");
   redirect("/dashboard/Employees");
 };
-
-
-
-
-
 
 export const updateProductEmp = async (formData) => {
   const { id, title, desc, price, stock, color, size } =
@@ -304,7 +325,8 @@ export const updateProductEmp = async (formData) => {
 
     Object.keys(updateFieldsEmp).forEach(
       (key) =>
-        (updateFieldsEmp[key] === "" || undefined) && delete updateFieldsEmp[key]
+        (updateFieldsEmp[key] === "" || undefined) &&
+        delete updateFieldsEmp[key]
     );
 
     await ProductEmp.findByIdAndUpdate(id, updateFieldsEmp);
@@ -316,8 +338,6 @@ export const updateProductEmp = async (formData) => {
   revalidatePath("/dashboard/Employees");
   redirect("/dashboard/Employees");
 };
-
-
 
 export const deleteproductEmp = async (formData) => {
   const { id } = Object.fromEntries(formData);
